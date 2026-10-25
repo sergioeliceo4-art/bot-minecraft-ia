@@ -13,11 +13,12 @@ function iniciarBot() {
     host: hostIP,
     port: portNum,
     username: 'BotIA',
-    offline: true
+    offline: true,
+    skipPing: true // Esto evita que falle buscando el servidor antes de entrar
   });
 
   client.on('spawn', () => {
-    console.log('¡El bot se ha conectado exitosamente al mundo de Minecraft!');
+    console.log('¡El bot se ha conectado exitosamente al servidor!');
   });
 
   client.on('error', (err) => {
@@ -31,7 +32,7 @@ function iniciarBot() {
 
     if (packet.message.includes('BotIA') || packet.message.startsWith('!ia')) {
       try {
-        const promptText = `Eres un NPC inteligente y un compañero ayudante dentro de un juego de Minecraft Bedrock. Responde de forma muy corta, útil y amigable en español al siguiente mensaje de un jugador: "${packet.message}"`;
+        const promptText = `Eres un NPC inteligente y un compañero ayudante dentro de un juego de Minecraft. Responde de forma muy corta, útil y amigable en español al siguiente mensaje de un jugador: "${packet.message}"`;
 
         const response = await ai.models.generateContent({
           model: 'gemini-2.5-flash',
@@ -56,5 +57,4 @@ function iniciarBot() {
   });
 }
 
-// Arrancamos el bot de forma segura
 iniciarBot();
