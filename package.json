@@ -1,0 +1,12 @@
+{
+  "name": "bot-minecraft-ia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bedrock-protocol": "^3.0.0",
+    "@google/genai": "^0.1.1"
+  }
+}
